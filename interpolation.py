@@ -16,17 +16,8 @@ def load_table():
 
 
 def get_hermite_func(t, I):
-    # 计算数值微分I'
-    dI = []
-    for i in range(len(t)):
-        temp = 0
-        if i == 0:
-            temp = (I[i + 1] - I[i]) * 2
-        elif i == len(t) - 1:
-            temp = (I[i] - I[i - 1]) * 2
-        else:
-            temp = I[i + 1] - I[i - 1]
-        dI.append(temp)
+    # 计算微分I'
+    dI = list(map(lambda x: x - x ** 2 / N, I))
 
     def hermite_func(x_list):
         def H(x):
@@ -80,7 +71,7 @@ if __name__ == "__main__":
     I_hat = hermite_func(t)
     plt.plot(t, I, label="I")
     plt.plot(t, I_hat, label="I_hat")
+    plt.scatter(tk, I_tk, label="I_tk", color="mediumseagreen", s=10)
     plt.legend()
     plt.show()
     print(np.abs(I_hat - I).max())
-    print(np.abs(I_hat - I))

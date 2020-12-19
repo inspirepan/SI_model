@@ -1,2 +1,1 @@
-# COVID-19
-numeric analysis of covid-19.
+Simple numeric analysis of SI model
